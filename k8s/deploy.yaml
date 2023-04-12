@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: section-project-deployment
+  labels:
+    app: section-project-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: section-project-deployment
+  template:
+    metadata:
+      labels:
+        app: section-project-deployment
+    spec:
+      containers:
+        - name: section-project-deployment
+          image: ghcr.io/${IMAGE_NAME}:main
+          imagePullPolicy: Always
+          resources:
+            requests:
+              cpu: ".1"
+              memory: ".1Gi"
+            limits:
+              cpu: ".1"
+              memory: ".1Gi"
+          ports:
+            - containerPort: 8080
